@@ -1,0 +1,20 @@
+{
+    "collab_server" : "",
+    "contents" : "#============= Setting =============\noptions(shiny.maxRequestSize=30*1024^2) \nPath = '/Users/ningchen/Downloads/shiny_mnist/'\n\n#============= Package =============\nlibrary(shiny)\nlibrary(shinydashboard)\nlibrary(EBImage)\n#install.packages(\"BiocManager\") \n#BiocManager::install(\"EBImage\")\n\n#library(stringi)\n#library(tensorflow)\n#library(keras)\n#install_keras()\n#============= Traing Model =============\n# model <- load_model_hdf5(file.path(Path,\"my_keras_mnist_resape.h5\"))\n\n#mnist <- dataset_mnist()\n#c(train_images, train_labels) %<-% mnist$train\n#c(test_images, test_labels) %<-% mnist$test\n\n#train_images <- train_images / 255\n#test_images <- test_images / 255\n\n#model <- keras_model_sequential()\n#model %>%\n#  layer_flatten(input_shape = c(28, 28)) %>%\n#  layer_dense(units = 128, activation = 'relu') %>%\n#  layer_dense(units = 10, activation = 'softmax')\n\n#model %>% compile(\n#  optimizer = 'adam', \n#  loss = 'sparse_categorical_crossentropy',\n#  metrics = c('accuracy')\n#)\n\n#model %>% fit(train_images, train_labels, epochs = 5)\n\n",
+    "created" : 1569145050348.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3755407971",
+    "id" : "44E03962",
+    "lastKnownWriteTime" : 1569563125,
+    "last_content_update" : 1569563125623,
+    "path" : "~/Downloads/shiny_mnist/global.R",
+    "project_path" : null,
+    "properties" : {
+    },
+    "relative_order" : 3,
+    "source_on_save" : false,
+    "source_window" : "",
+    "type" : "r_source"
+}
