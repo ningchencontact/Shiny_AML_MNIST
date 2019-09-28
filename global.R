@@ -5,8 +5,9 @@ Path = '/Users/sun/Desktop/new'
 #============= Package =============
 library(shiny)
 library(shinydashboard)
-library(EBImage)
-library(keras)
 library(dplyr)
 library(stringi)
+library(EBImage)
+library(keras)
+library(httr)
 
