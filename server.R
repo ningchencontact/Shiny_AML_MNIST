@@ -23,28 +23,18 @@ shinyServer(function(input, output) {
                  input_aml = input_aml))
   }) 
   
-  import_filename <- reactive({
-    if( !is.null( import_image() )){
-      
-      import.filename = stringi::stri_extract_first(str = import_image()$inFile$name, regex = ".*(?=\\.)")
-      
-      filename_1 = paste0(unlist(strsplit(import.filename, ".", fixed = TRUE))[1],'_',substr(Sys.time(),1,10),'_',gsub(':','',substr(Sys.time(),12,19)),'.png')
-      filename_2 = paste0('gray_',substr(Sys.time(),1,10),'_',gsub(':','',substr(Sys.time(),12,19)),'.png')
-    }
-    return( list(filename_1=filename_1,filename_2=filename_2) )
-  }) 
   
-  observe({
-    # Run whenever checkButton is pressed
-    if( !is.null( import_image() )){
-      import_color.image = import_image()$import_color.image
-      resize_gray.image = import_image()$resize_gray.image
-      
-      dir.create(file.path(Path, "output"), showWarnings = FALSE)
-      writeImage(import_color.image,file=file.path(Path,'output',import_filename()$filename_1))
-      writeImage(resize_gray.image,file=file.path(Path,'output',import_filename()$filename_2))
-    }
-  }) 
+  # observe({
+  #   # Run whenever checkButton is pressed
+  #   if( !is.null( import_image() )){
+  #     import_color.image = import_image()$import_color.image
+  #     
+  #     
+  #     dir.create(file.path(Path, "output"), showWarnings = FALSE)
+  #     writeImage(import_color.image,file=file.path(Path,'output',import_filename()$filename_1))
+  #     writeImage(resize_gray.image,file=file.path(Path,'output',import_filename()$filename_2))
+  #   }
+  # }) 
   
   output$import_plot <- renderPlot({
     if( !is.null( import_image() )){
@@ -53,7 +43,7 @@ shinyServer(function(input, output) {
     }
   })  
   
-
+  # ===== Output: result ======
   output$predictBox <- renderInfoBox({
     if( !is.null(import_image()) ){
       gray_im <- import_image()$input_aml
