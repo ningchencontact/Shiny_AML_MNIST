@@ -1,6 +1,7 @@
 #============= Setting =============
 options(shiny.maxRequestSize=30*1024^2) 
-Path = '/Users/sun/Desktop/new'
+# input your path
+# Path = 'Your Path'
 
 #============= Package =============
 library(shiny)
