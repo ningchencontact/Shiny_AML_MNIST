@@ -24,18 +24,6 @@ shinyServer(function(input, output) {
   }) 
   
   
-  # observe({
-  #   # Run whenever checkButton is pressed
-  #   if( !is.null( import_image() )){
-  #     import_color.image = import_image()$import_color.image
-  #     
-  #     
-  #     dir.create(file.path(Path, "output"), showWarnings = FALSE)
-  #     writeImage(import_color.image,file=file.path(Path,'output',import_filename()$filename_1))
-  #     writeImage(resize_gray.image,file=file.path(Path,'output',import_filename()$filename_2))
-  #   }
-  # }) 
-  
   output$import_plot <- renderPlot({
     if( !is.null( import_image() )){
       plot(import_image()$import_color.image)
