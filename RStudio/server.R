@@ -9,8 +9,17 @@ shinyServer(function(input, output) {
     
     if (is.null(inFile))
       return(NULL)
-    
+    #在右側fluidRow 顯示圖像結果
     import_color.image <- readImage(inFile$datapath)
+    
+    output$import_plot <- renderPlot({
+      if( !is.null( import_image() )){
+        plot(import_image()$import_color.image)
+        title("Import Image")
+      }
+    })
+    
+    #將圖片傳到Custom Vision
     import_gray.image <- channel(import_color.image,"gray")
     resize_gray.image <- resize(import_gray.image, 28, 28)
     trans_gray.image <- transpose(resize_gray.image)
@@ -24,20 +33,23 @@ shinyServer(function(input, output) {
   }) 
   
   
-  output$import_plot <- renderPlot({
-    if( !is.null( import_image() )){
-      plot(import_image()$import_color.image)
-      title("Import Image")
-    }
-  })  
+  
   
   # ===== Output: result ======
-  output$predictBox <- renderInfoBox({
+
+  ###https://shuclasscustomvision.cognitiveservices.azure.com/customvision/v3.0/Prediction/6de7e2c3-e4d2-4b93-83e4-aa32f8aa87f9/classify/iterations/Iteration1/image
+  ### Set Prediction-Key Header to : 58f227639456446c83d1b49c85089b2f
+  ### Set Content-Type Header to : application/octet-stream
+  ### Set Body to : <image file>
+  
+  ## 可能有問題?
+  ## 將import_color.image(上傳的影像傳到custom vision)
+   output$predictBox <- renderInfoBox({
     if( !is.null(import_image()) ){
-      gray_im <- import_image()$input_aml
+      import_color.image <- import_image()$import_color.image
       
       res=POST(url="http://5f8c233f-8693-4046-9117-98739a2dcf18.southeastasia.azurecontainer.io/score",
-               body=list(data = gray_im ),
+               body=list(data = import_color.image ),
                encode="json")
       predict.result=httr::content(res)
       
