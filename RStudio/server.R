@@ -41,6 +41,7 @@ shinyServer(function(input, output) {
   ### Set Prediction-Key Header to : 58f227639456446c83d1b49c85089b2f
   ### Set Content-Type Header to : application/octet-stream
   ### Set Body to : <image file>
+  ### 參考文件 https://github.com/MicrosoftDocs/azure-docs/blob/master/articles/cognitive-services/Custom-Vision-Service/python-tutorial.md#get-and-use-the-published-iteration-on-the-prediction-endpoint
   
   ## 可能有問題?
   ## 將import_color.image(上傳的影像傳到custom vision)
@@ -48,7 +49,7 @@ shinyServer(function(input, output) {
     if( !is.null(import_image()) ){
       import_color.image <- import_image()$import_color.image
       
-      res=POST(url="http://5f8c233f-8693-4046-9117-98739a2dcf18.southeastasia.azurecontainer.io/score",
+      res=POST(url="https://shuclasscustomvision.cognitiveservices.azure.com/customvision/v3.0/Prediction/6de7e2c3-e4d2-4b93-83e4-aa32f8aa87f9/classify/iterations/Iteration1/image",
                body=list(data = import_color.image ),
                encode="json")
       predict.result=httr::content(res)
