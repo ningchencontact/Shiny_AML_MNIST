@@ -14,11 +14,11 @@ shinyUI(
       
       fluidRow(
         box(plotOutput('import_plot'))
-      ),
-      fluidRow(
-        infoBoxOutput("predictBox")
-      )
-      
+      ) ,
+       fluidRow(
+         infoBoxOutput("predictBox")
+       )
+
     )
   )
   
